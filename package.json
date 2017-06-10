@@ -24,7 +24,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mikewesthad/navmesh-phaser-plugin.git"
+    "url": "git+https://github.com/mikewesthad/phaser-tiled-hull.git"
   },
   "keywords": ["hull", "convex hull", "tiled", "tilemap", "phaser"],
   "author": "Michael Hadley",
@@ -33,9 +33,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mikewesthad/navmesh-phaser-plugin/issues"
+    "url": "https://github.com/mikewesthad/phaser-tiled-hull/issues"
   },
-  "homepage": "https://github.com/mikewesthad/navmesh-phaser-plugin#readme",
+  "homepage": "https://github.com/mikewesthad/phaser-tiled-hull#readme",
   "dependencies": {
     "hull.js": "^0.2.10"    
   },

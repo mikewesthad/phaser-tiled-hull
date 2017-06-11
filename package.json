@@ -12,7 +12,12 @@
     "watch:all": "concurrently \"npm run watch:library\" \"npm run watch:example\"",
     "serve": "browser-sync start --config \"config/browser-sync.config.js\"",
     "dev": "concurrently \"npm run watch:all\" \"npm run serve\"",
-    "clean": "rimraf dist public"
+    "clean:builds": "rimraf dist public",
+    "clean:docs": "rimraf out",
+    "clean:all": "rimraf dist public out",
+    "doc": "jsdoc -c config/jsdoc.config.json",
+    "postdoc": "cp -r doc-images/ jsdocs/",
+    "deploy:doc": "gh-pages --branch gh-pages --dist jsdocs --dest docs"
   },
   "files": [
     "dist/",
@@ -49,6 +54,8 @@
     "concurrently": "^3.4.0",
     "copy-webpack-plugin": "^4.0.1",
     "expose-loader": "^0.7.3",
+    "gh-pages": "^1.0.0",
+    "jsdoc": "^3.4.3",
     "phaser-ce": "^2.8.0",
     "rimraf": "^2.6.1",
     "webpack": "^2.6.1"

@@ -1,3 +1,8 @@
+/**
+ * Phaser tiled hull module
+ * @module phaser-tiled-hull
+ */
+
 import hulljs from "hull.js"; // JS extension required
 import PolygonEdge from "./polygon-edge";
 

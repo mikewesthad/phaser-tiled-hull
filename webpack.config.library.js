@@ -3,7 +3,7 @@
 const path = require("path");
 
 module.exports = {
-    context: path.join(__dirname, "src", "phaser-tiled-hull"),
+    context: path.join(__dirname, "src", "library"),
     entry: {
         "phaser-tiled-hull": "./index.js",
         "phaser-tiled-hull.min": "./index.js",

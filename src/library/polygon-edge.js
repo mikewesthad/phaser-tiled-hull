@@ -1,6 +1,7 @@
 /**
  * Small class for precomuting some useful information about an edge of a polygon - the line,
- * length, midpoint, normal
+ * length, midpoint, normal. This class isn't exposed directly by the module, but is used in the
+ * return type of {@link module:phaser-tiled-hull~phaserTiledHull}.
  *
  * @class PolygonEdge
  */

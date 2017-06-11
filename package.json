@@ -53,6 +53,7 @@
     "browser-sync": "^2.18.12",
     "concurrently": "^3.4.0",
     "copy-webpack-plugin": "^4.0.1",
+    "docdash": "^0.4.0",
     "expose-loader": "^0.7.3",
     "gh-pages": "^1.0.0",
     "jsdoc": "^3.4.3",

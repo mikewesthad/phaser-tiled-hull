@@ -22,7 +22,7 @@
   },
   "files": [
     "dist/",
-    "src/phaser-tiled-hull/"
+    "src/library/"
   ],
   "repository": {
     "type": "git",

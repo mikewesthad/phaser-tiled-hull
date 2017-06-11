@@ -4,13 +4,13 @@
   "description": "A plugin for Phaser for reducing neighboring tiles into a single shape (a convex hull)",
   "main": "dist/phaser-tiled-hull.min.js",
   "scripts": {
-    "build:library": "webpack -p --config webpack.config.library.js",
-    "build:example": "webpack -p --config webpack.config.example.js",
+    "build:library": "webpack -p --config config/webpack.config.library.js",
+    "build:example": "webpack -p --config config/webpack.config.example.js",
     "build:all": "concurrently \"npm run build:library\" \"npm run build:example\"",
-    "watch:library": "webpack --watch --config webpack.config.library.js",
-    "watch:example": "webpack --watch --config webpack.config.example.js",
+    "watch:library": "webpack --watch --config config/webpack.config.library.js",
+    "watch:example": "webpack --watch --config config/webpack.config.example.js",
     "watch:all": "concurrently \"npm run watch:library\" \"npm run watch:example\"",
-    "serve": "browser-sync start --config \"browser-sync.config.js\"",
+    "serve": "browser-sync start --config \"config/browser-sync.config.js\"",
     "dev": "concurrently \"npm run watch:all\" \"npm run serve\"",
     "clean": "rimraf dist public"
   },

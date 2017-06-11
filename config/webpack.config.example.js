@@ -3,14 +3,17 @@
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const path = require("path");
 
+// Go up one directory since we are in config/
+const root = path.join(__dirname, "..");
+
 module.exports = {
-    context: path.join(__dirname, "src", "example"),
+    context: path.join(root, "src", "example"),
     entry: {
         main: "./js/main.js"
     },
     output: {
         filename: "js/[name].js",
-        path: path.resolve(__dirname, "public")
+        path: path.resolve(root, "public")
     },
     module: {
         rules: [

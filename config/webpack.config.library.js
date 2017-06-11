@@ -2,15 +2,18 @@
 
 const path = require("path");
 
+// Go up one directory since we are in config/
+const root = path.join(__dirname, "..");
+
 module.exports = {
-    context: path.join(__dirname, "src", "library"),
+    context: path.join(root, "src", "library"),
     entry: {
         "phaser-tiled-hull": "./index.js",
         "phaser-tiled-hull.min": "./index.js",
     },
     output: {
         filename: "[name].js",
-        path: path.resolve(__dirname, "dist"),
+        path: path.resolve(root, "dist"),
         library: "phaserTiledHull",
         libraryTarget: "umd"
     },

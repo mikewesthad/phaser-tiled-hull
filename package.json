@@ -1,7 +1,7 @@
 {
   "name": "phaser-tiled-hull",
-  "version": "1.0.0",
-  "description": "A plugin for Phaser for reducing neighboring tiles into a single shape (a convex hull)",
+  "version": "1.0.1",
+  "description": "A plugin for Phaser for reducing neighboring tiles into a single shape (a hull)",
   "main": "dist/phaser-tiled-hull.min.js",
   "scripts": {
     "build:library": "webpack -p --config config/webpack.config.library.js",

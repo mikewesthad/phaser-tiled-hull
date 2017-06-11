@@ -1,10 +1,10 @@
 # Hulls from Tilemaps in Phaser
 
-A module for reducing neighboring tiles (in a tilemap) into a single shape - a polygon "hull". For example, the demo tilemap (left) is converted into a series of hulls and visualized (right). The hulls contain information about the edges - including the midpoint, normal and length. See [src/js/states/start.js](https://github.com/mikewesthad/phaser-tiled-hull/blob/master/src/example/js/states/start.js) for example usage.
+A module for use with [Phaser](http://phaser.io/) for reducing neighboring tiles in a tilemap into a single shape - a polygon "hull". For example, the demo tilemap (left) is converted into a series of hulls (right, each hull is given a random color). The hulls contain information about the edges - including midpoints, normals and line lengths. See [src/example/js/states/start.js](https://github.com/mikewesthad/phaser-tiled-hull/blob/master/src/example/js/states/start.js) for example usage.
 
 ![](./docs/demo.png)
 
-We needed the ability to find hulls in a tilemap for casting shadows in a 2D lighting engine. This hull calculation could also be useful for simplifying collision detection with a tilemap.
+This was built to find hulls for casting dynamic shadows in a 2D lighting engine, but the hull calculation might be useful for simplifying things like collision detection.
 
 ## Usages
 
@@ -24,7 +24,7 @@ Inside of your own script, you can now use the global `phaserTiledHull`:
 phaserTiledHull(...)
 ```
 
-See [src/js/states/start.js](https://github.com/mikewesthad/phaser-tiled-hull/blob/master/src/example/js/states/start.js) for example usage in global mode.
+See [src/example/js/states/start.js](https://github.com/mikewesthad/phaser-tiled-hull/blob/master/src/example/js/states/start.js) for example usage in global mode.
 
 ### As a Module
 
@@ -65,7 +65,7 @@ Tilemap:             Hull:
 
 ```
 
-## Building Source
+## Building the Source Files
 
 See the scripts section of package.json. Main commands:
 

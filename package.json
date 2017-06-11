@@ -1,0 +1,56 @@
+{
+  "name": "phaser-tiled-hull",
+  "version": "1.0.0",
+  "description": "A plugin for Phaser for reducing neighboring tiles into a single shape (a convex hull)",
+  "main": "dist/phaser-tiled-hull.min.js",
+  "scripts": {
+    "build:library": "webpack -p --config webpack.config.library.js",
+    "build:example": "webpack -p --config webpack.config.example.js",
+    "build:all": "concurrently \"npm run build:library\" \"npm run build:example\"",
+    "watch:library": "webpack --watch --config webpack.config.library.js",
+    "watch:example": "webpack --watch --config webpack.config.example.js",
+    "watch:all": "concurrently \"npm run watch:library\" \"npm run watch:example\"",
+    "serve": "browser-sync start --config \"browser-sync.config.js\"",
+    "dev": "concurrently \"npm run watch:all\" \"npm run serve\"",
+    "clean": "rimraf dist public"
+  },
+  "files": [
+    "dist/",
+    "src/phaser-tiled-hull/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikewesthad/phaser-tiled-hull.git"
+  },
+  "keywords": [
+    "hull",
+    "convex hull",
+    "tiled",
+    "tilemap",
+    "phaser"
+  ],
+  "author": "Michael Hadley",
+  "contributors": [
+    "Rex Twedt"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mikewesthad/phaser-tiled-hull/issues"
+  },
+  "homepage": "https://github.com/mikewesthad/phaser-tiled-hull#readme",
+  "dependencies": {
+    "hull.js": "^0.2.10"
+  },
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.5.2",
+    "browser-sync": "^2.18.12",
+    "concurrently": "^3.4.0",
+    "copy-webpack-plugin": "^4.0.1",
+    "expose-loader": "^0.7.3",
+    "phaser-ce": "^2.8.0",
+    "rimraf": "^2.6.1",
+    "webpack": "^2.6.1"
+  }
+}

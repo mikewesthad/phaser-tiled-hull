@@ -1,6 +1,6 @@
 # Hulls from Tilemaps in Phaser
 
-A module for reducing neighboring tiles (in a tilemap) into a single shape - a polygon "hull". For example, the demo tilemap (left) is converted into a series of hulls and visualized (right). The hulls contain information about the edges - including the midpoint, normal and length. See [src/js/states/start.js](https://github.com/mikewesthad/phaser-tiled-hull/blob/master/src/js/states/start.js) for example usage.
+A module for reducing neighboring tiles (in a tilemap) into a single shape - a polygon "hull". For example, the demo tilemap (left) is converted into a series of hulls and visualized (right). The hulls contain information about the edges - including the midpoint, normal and length. See [src/js/states/start.js](https://github.com/mikewesthad/phaser-tiled-hull/blob/master/src/example/js/states/start.js) for example usage.
 
 ![](./docs/demo.png)
 
@@ -24,7 +24,7 @@ Inside of your own script, you can now use the global `phaserTiledHull`:
 phaserTiledHull(...)
 ```
 
-See [src/js/states/start.js](https://github.com/mikewesthad/phaser-tiled-hull/blob/master/src/js/states/start.js) for example usage in global mode.
+See [src/js/states/start.js](https://github.com/mikewesthad/phaser-tiled-hull/blob/master/src/example/js/states/start.js) for example usage in global mode.
 
 ### As a Module
 

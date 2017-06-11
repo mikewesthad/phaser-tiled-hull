@@ -1,10 +1,10 @@
 # Hulls from Tilemaps in Phaser
 
-A module for use with [Phaser](http://phaser.io/) for reducing neighboring tiles in a tilemap into a single shape - a polygon "hull". For example, the demo tilemap (left) is converted into a series of hulls (right, each hull is given a random color). The hulls contain information about the edges - including midpoints, normals and line lengths. See [src/example/js/states/start.js](https://github.com/mikewesthad/phaser-tiled-hull/blob/master/src/example/js/states/start.js) for example usage.
-
-![](./docs/demo.png)
+A module for use with [Phaser](http://phaser.io/) for reducing neighboring tiles in a tilemap into a single shape - a polygon "hull". For example, the demo tilemap (left) is converted into a series of hulls (right, each hull is visualized in a random color). The hulls contain information about the edges - including midpoints, normals and line lengths. See [src/example/js/states/start.js](https://github.com/mikewesthad/phaser-tiled-hull/blob/master/src/example/js/states/start.js) for example usage.
 
 This was built to find hulls for casting dynamic shadows in a 2D lighting engine, but the hull calculation might be useful for simplifying things like collision detection.
+
+![](./docs/demo.png)
 
 ## Usages
 

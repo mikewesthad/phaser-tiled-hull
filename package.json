@@ -24,6 +24,11 @@
     "dist/",
     "src/library/"
   ],
+  "browserify": {
+    "transform": [
+      ["babelify", {"only": "src/**/*"}]
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mikewesthad/phaser-tiled-hull.git"

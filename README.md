@@ -2,7 +2,7 @@
 
 Documentation and upload in-progress.
 
-A module for reducing neighboring tiles (in a tilemap) into a single shape - a convex hull.
+A module for reducing neighboring tiles (in a tilemap) into a single shape - a polygon "hull".
 
 ## Why
 
@@ -11,6 +11,8 @@ We needed the ability to find hulls in a tilemap in our 2D lighting engine. This
 TODO: images showing hull
 
 ## Usages
+
+Whether you use the module via a script or via npm, Phaser is a dependency. The `phaserTiledHull` expects Phaser to be in the global scope.
 
 ### Through a Script (Global)
 
@@ -48,6 +50,20 @@ import tiledHull from "phaser-tiled-hull/src/phaser-tiled-hull";
 tiledHull(...)
 ```
 
+## To Do
+
+- Add Phaser as an external dependency so that it doesn't have to be on the global. Relevant mostly for when Phaser v3 is released.
+- hull.js can't handle 1x tile concave gaps. Submit PR to hull.js to fix that. For example:
+
+```
+Tilemap:             Hull:
+
+ X X X               X X X
+ X          ⟶       X   X
+ X X X               X X X
+
+```
+
 ## Building Source
 
 See the scripts section of package.json. Main commands:
@@ -61,10 +77,10 @@ Directory structure:
 
 ```
 ├── src/
-	├── example/                    ES6 example of how to use the library
-	└── phaser-tiled-hull/          ES6 source for the library
+    ├── example/                    ES6 example of how to use the library
+    └── phaser-tiled-hull/          ES6 source for the library
 ├── public/                         The babel transpiled example code
-├── dist/                           The transpiled library
-	├── phaser-tiled-hull.js        Transpiled
-	└── phaser-tiled-hull.minjs     Transpiled and minified
+└── dist/                           The transpiled library and source maps
+    ├── phaser-tiled-hull.js        Transpiled
+    └── phaser-tiled-hull.minjs     Transpiled and minified
 ```

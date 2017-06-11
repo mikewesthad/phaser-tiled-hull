@@ -14,7 +14,13 @@ TODO: images showing hull
 
 ### Through a Script (Global)
 
-`<script src="dist/phaser-tiled-hull.min.js><script>`
+Download the dist/phaser-tiled-hull.min.js [here](https://raw.githubusercontent.com/mikewesthad/phaser-tiled-hull/master/dist/phaser-tiled-hull.min.js) and include it in your HTML:
+
+```
+<script src="dist/phaser-tiled-hull.min.js><script>
+```
+
+Inside of your own script, you can now use the global `phaserTiledHull`:
 
 ```js
 phaserTiledHull(...)
@@ -24,7 +30,9 @@ phaserTiledHull(...)
 
 Install the dependency:
 
-`npm install --save phaser-tiled-hull`
+```
+npm install --save phaser-tiled-hull
+```
 
 To use the babelified and minified library:
 
@@ -42,4 +50,21 @@ tiledHull(...)
 
 ## Building Source
 
-TODO
+See the scripts section of package.json. Main commands:
+
+```
+npm run build:all   ⟶   Builds & minifies the library & example
+npm run dev         ⟶   Builds the library & example and serves it via browser-sync
+```
+
+Directory structure:
+
+```
+├── src/
+	├── example/                    ES6 example of how to use the library
+	└── phaser-tiled-hull/          ES6 source for the library
+├── public/                         The babel transpiled example code
+├── dist/                           The transpiled library
+	├── phaser-tiled-hull.js        Transpiled
+	└── phaser-tiled-hull.minjs     Transpiled and minified
+```

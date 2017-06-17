@@ -1,0 +1,19 @@
+{
+  "coverage": "87.5%",
+  "expectCount": 8,
+  "actualCount": 7,
+  "files": {
+    "library/polygon-edge.js": {
+      "expectCount": 7,
+      "actualCount": 6,
+      "undocumentLines": [
+        7
+      ]
+    },
+    "library/tiled-hull.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    }
+  }
+}

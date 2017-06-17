@@ -1,0 +1,1132 @@
+[
+  {
+    "__docId__": 0,
+    "kind": "file",
+    "name": "library/index.js",
+    "content": "// Fix for webpack not exporting ES6 module default properly when using global mode of UMD. It ends\r\n// up with something having to do \"phaserTiledHull.default(...)\" instead of \"phaserTiledHull(...)\"\r\nmodule.exports = require(\"./tiled-hull\").default;",
+    "static": true,
+    "longname": "library/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 1,
+    "kind": "file",
+    "name": "library/polygon-edge.js",
+    "content": "/**\r\n * Small class for precomuting some useful information about an edge of a polygon - the line,\r\n * length, midpoint, normal. This class isn't exposed directly by the module, but is used in the\r\n * return type of {@link phaserTiledHull}.\r\n */\r\nclass PolygonEdge {\r\n    constructor(line, hullIndex) {\r\n        /**\r\n         * The line that makes up the edge\r\n         * @type {Phaser.Line}\r\n         */\r\n        this.line = line;\r\n\r\n        /** @type {number} */\r\n        this.length = line.length;\r\n\r\n        /** @type {Phaser.Point} */\r\n        this.midpoint = line.midPoint();\r\n        \r\n        /** \r\n         * Outward-facing normal vector as a point, normalized to unit length\r\n         * @type {Phaser.Point} \r\n         * */\r\n        this.normal = this._getOutwardNormal(line);\r\n\r\n        /**\r\n         * Identifies which hull index this edge is a part of \r\n         * @type {number} \r\n         * */\r\n        this.shapeId = hullIndex;\r\n    }\r\n\r\n    _getOutwardNormal(line) {\r\n        // The wall lines are returned from hull.js in clockwise order, so the outward facing normal\r\n        // is the following\r\n        return new Phaser.Point((line.end.y - line.start.y), -(line.end.x - line.start.x))\r\n            .setMagnitude(1);\r\n    }\r\n}\r\n\r\nexport default PolygonEdge;",
+    "static": true,
+    "longname": "library/polygon-edge.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 2,
+    "kind": "class",
+    "name": "PolygonEdge",
+    "memberof": "library/polygon-edge.js",
+    "static": true,
+    "longname": "library/polygon-edge.js~PolygonEdge",
+    "access": null,
+    "export": true,
+    "importPath": "phaser-tiled-hull/library/polygon-edge.js",
+    "importStyle": "PolygonEdge",
+    "description": "Small class for precomuting some useful information about an edge of a polygon - the line,\nlength, midpoint, normal. This class isn't exposed directly by the module, but is used in the\nreturn type of {@link phaserTiledHull}.",
+    "lineNumber": 6,
+    "interface": false
+  },
+  {
+    "__docId__": 3,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "library/polygon-edge.js~PolygonEdge",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "library/polygon-edge.js~PolygonEdge#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "line",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "hullIndex",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 4,
+    "kind": "member",
+    "name": "line",
+    "memberof": "library/polygon-edge.js~PolygonEdge",
+    "static": false,
+    "longname": "library/polygon-edge.js~PolygonEdge#line",
+    "access": null,
+    "description": "The line that makes up the edge",
+    "lineNumber": 12,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Phaser.Line"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 5,
+    "kind": "member",
+    "name": "length",
+    "memberof": "library/polygon-edge.js~PolygonEdge",
+    "static": false,
+    "longname": "library/polygon-edge.js~PolygonEdge#length",
+    "access": null,
+    "description": null,
+    "lineNumber": 15,
+    "type": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 6,
+    "kind": "member",
+    "name": "midpoint",
+    "memberof": "library/polygon-edge.js~PolygonEdge",
+    "static": false,
+    "longname": "library/polygon-edge.js~PolygonEdge#midpoint",
+    "access": null,
+    "description": null,
+    "lineNumber": 18,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Phaser.Point"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 7,
+    "kind": "member",
+    "name": "normal",
+    "memberof": "library/polygon-edge.js~PolygonEdge",
+    "static": false,
+    "longname": "library/polygon-edge.js~PolygonEdge#normal",
+    "access": null,
+    "description": "Outward-facing normal vector as a point, normalized to unit length",
+    "lineNumber": 24,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Phaser.Point"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 8,
+    "kind": "member",
+    "name": "shapeId",
+    "memberof": "library/polygon-edge.js~PolygonEdge",
+    "static": false,
+    "longname": "library/polygon-edge.js~PolygonEdge#shapeId",
+    "access": null,
+    "description": "Identifies which hull index this edge is a part of ",
+    "lineNumber": 30,
+    "type": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 9,
+    "kind": "method",
+    "name": "_getOutwardNormal",
+    "memberof": "library/polygon-edge.js~PolygonEdge",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "library/polygon-edge.js~PolygonEdge#_getOutwardNormal",
+    "access": null,
+    "description": null,
+    "lineNumber": 33,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "line",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 10,
+    "kind": "file",
+    "name": "library/tiled-hull.js",
+    "content": "import hulljs from \"hull.js\"; // JS extension required\r\nimport PolygonEdge from \"./polygon-edge\";\r\n\r\n/**\r\n * A function to take a tilemap layer and process its tiles into clusters. This returns an array of\r\n * polygons - each polygon encloses a separate cluster of tiles in the tilemap layer. {@link PolygonEdge}\r\n *\r\n * @param {Phaser.TilemapLayer} tilemapLayer The tilemap layer to use for hull calculation.\r\n * @param {object} [options = {}] Options for filtering the tiles and only allowing certain tiles to\r\n * be added to the final hulls. If no options specified, then all tiles in the layer will be\r\n * processed and added to a hull. If multiple options are specified, then a tile only has to match\r\n * ONE of the options to be added to a hull.\r\n * @param {number[]} [options.tileIndices = null] An array of tile indices to use for determining\r\n * which tiles should be clustered together. If a tile's index matches an index in the array, it\r\n * will be added to a hull.\r\n * @param {string} [options.tileProperty = null] The name of a property on tiles (set in Tiled) to\r\n * use for determining which tiles should be clustered together. If the property is true (or truthy)\r\n * on a tile, it will be added to a hull.\r\n * @param {boolean} [options.checkCollide = false] Whether or not a tile's collide property should\r\n * be used for determining which tiles should be clustered together. If true, then colliding tiles\r\n * will be added to a hull.\r\n * @returns {Array.<PolygonEdge[]>} An array where each element represents a polygon. The polygons\r\n * are stored as an array of PolygonEdge instances.\r\n */\r\nexport default function phaserTiledHull(tilemapLayer, {tileIndices = null, tileProperty = null, \r\n        checkCollide = false} = {}) {\r\n    // Separate the tilemap layer into an array of clustered tiles\r\n    const clusters = calculateClusters(tilemapLayer, tileIndices, tileProperty, checkCollide);\r\n    // Take the clustered tiles and calculate a hull for each cluster\r\n    const pointHulls = calculateHullPoints(clusters);\r\n    // Take the point hulls and turn them into polygon representations (i.e. connect the dots)\r\n    const polyHulls = buildPolygons(pointHulls);\r\n    // Turn the lines in polyHulls into PolygonEdge instances, pre-caching some helpful info like\r\n    // the edge normals\r\n    const hulls = [];\r\n    for (const [i, polyHull] of polyHulls.entries()) {\r\n        const hull = [];\r\n        for (const edge of polyHull) {\r\n            hull.push(new PolygonEdge(edge, i));\r\n        }\r\n        hulls.push(hull);\r\n    }\r\n    return hulls;\r\n}\r\n\r\nfunction calculateClusters(tilemapLayer, tileIndices, tileProperty, checkCollide) {\r\n    const tilemap = tilemapLayer.map;\r\n    const clusters = [];\r\n    const getTile = (tx, ty) => tilemap.getTile(tx, ty, tilemapLayer.index);\r\n    \r\n    // Loop over all tiles in the map and kick off recursive cluster building\r\n    for (var x = 0; x < tilemap.width; x++) {\r\n        for (var y = 0; y < tilemap.height; y++) {\r\n            const tile = getTile(x, y);\r\n            if (checkTile(tile) && !findTileInClusters(tile)) {\r\n                const cluster = [];\r\n                recursivelySearchNeighbors(x, y, cluster);\r\n                clusters.push(cluster);\r\n            }\r\n        }\r\n    }\r\n\r\n    // Check to make sure the tile passes the checks, i.e. it is allowed to be in a cluster\r\n    function checkTile(tile) {\r\n        // No tile, ignore\r\n        if (!tile) return false;\r\n        // If an array of indices was provided, tile's index must be in that array\r\n        if (tileIndices && tileIndices.includes(tile.index)) return true;\r\n        // If a tile property was provided, the tile must have a truthy value for that property\r\n        if (tileProperty && tile.properties[tileProperty]) return true;\r\n        // If we only care about colliding tiles, make sure the tile collides\r\n        if (checkCollide && tile.collides) return true;\r\n        // Tile didn't pass any checks, ignore\r\n        return false;\r\n    }\r\n\r\n    function recursivelySearchNeighbors(x, y, cluster) {\r\n        // If tile passes the checks and is not already in the cluster, add it and recursively check\r\n        // the neighbors. Note: There's no chance of a tile being a member of two separate clusters.\r\n        const tile = getTile(x, y);\r\n        if (checkTile(tile) && (cluster.indexOf(tile) === -1)) {\r\n            cluster.push(tile); // Add the current tile\r\n            // Search the neighbors\r\n            recursivelySearchNeighbors(x, y - 1, cluster);\r\n            recursivelySearchNeighbors(x, y + 1, cluster);\r\n            recursivelySearchNeighbors(x + 1, y, cluster);\r\n            recursivelySearchNeighbors(x - 1, y, cluster);\r\n        }\r\n    }\r\n\r\n    function findTileInClusters(searchTile) {\r\n        for (const cluster of clusters) {\r\n            for (const tile of cluster) {\r\n                if (searchTile === tile) return cluster;\r\n            }\r\n        }\r\n        return null;\r\n    }\r\n\r\n    return clusters;\r\n}\r\n\r\nfunction calculateHullPoints(clusters) {\r\n    const hulls = [];\r\n\r\n    // Loop over each cluster of tiles in clusters and calculate a polygon hull\r\n    for (const cluster of clusters) {\r\n        // Find all the points - i.e. the corners of each tile in the cluster\r\n        const points = [];\r\n        for (const tile of cluster) {\r\n            points.push(\r\n                [tile.left, tile.top],\r\n                [tile.right, tile.top],                \r\n                [tile.left, tile.bottom],                \r\n                [tile.right, tile.bottom]\r\n            );\r\n        }\r\n\r\n        // Use hull.js to find a hull (e.g. points in clockwise order). The second parameter is the \r\n        // concavity of the hull, with 1 being maximally concave.  \r\n        const hull = hulljs(points, 1);\r\n        hulls.push(hull);\r\n    }\r\n\r\n    return hulls;\r\n}\r\n\r\nfunction buildPolygons(hulls) {\r\n    const polygons = [];\r\n\r\n    for (const hullPoints of hulls) {\r\n        const edges = [];\r\n\r\n        // Walk along the line segments of the hull, collapsing collinear lines into a single edge\r\n        let currentEdge = new Phaser.Line(...hullPoints[0], ...hullPoints[1]);\r\n        let segment;\r\n        for (let i = 1; i < hullPoints.length; i++) {\r\n            // Get the next line segment - starts from the endpoint of the last segment\r\n            segment = new Phaser.Line(...hullPoints[i - 1], ...hullPoints[i]);\r\n\r\n            if (checkIfCollinear(currentEdge, segment)) {\r\n                // If the current edge and line segment are collinear, then we haven't reached the\r\n                // end of the edge yet. Extend the edge to contain the segment.\r\n                currentEdge = new Phaser.Line(\r\n                    currentEdge.start.x, currentEdge.start.y, segment.end.x, segment.end.y\r\n                );\r\n            } else {\r\n                // We've reached a corner, so the edge is done. Save it and start a new one.\r\n                edges.push(currentEdge);\r\n                currentEdge = segment.clone();             \r\n            }\r\n        }\r\n\r\n        // Process the last line segment - connecting the last point back around to the first point\r\n        segment = new Phaser.Line(...hullPoints[hullPoints.length - 1], ...hullPoints[0]);\r\n        if (checkIfCollinear(currentEdge, segment)) {\r\n            // Extend the edge and add it (since it wasn't added by the loop above)\r\n            currentEdge = new Phaser.Line(\r\n                currentEdge.start.x, currentEdge.start.y, segment.end.x, segment.end.y\r\n            );\r\n            edges.push(currentEdge);\r\n        } else {\r\n            // Corner - add the edge and the next segment \r\n            edges.push(currentEdge);\r\n            edges.push(segment);\r\n        }\r\n\r\n        // Determine whether the last edge and the first edge need to be merged (if the points in\r\n        // the hull started midway through an edge)\r\n        if (checkIfCollinear(edges[0], edges[edges.length - 1])) {\r\n            const firstLine = edges.shift();\r\n            const lastLine = edges.pop();\r\n            var combinedLine = new Phaser.Line(\r\n                firstLine.start.x, firstLine.start.y, lastLine.end.x, lastLine.end.y\r\n            );\r\n            edges.push(combinedLine);\r\n        }\r\n\r\n        // Add the final lines to the polygon\r\n        polygons.push(edges);\r\n    }\r\n    \r\n    return polygons;\r\n}\r\n\r\nfunction checkIfCollinear(line1, line2) {\r\n    // To check if two slopes are equal:\r\n    //  lineDeltaY / lineDeltaX = segmentDeltaY / segmentDeltaX\r\n    // But to avoid dividing by zero:\r\n    //  (lineDeltaX * segmentDeltaY) - (lineDeltaY * segmentDeltaX) = 0\r\n    const dx1 = line1.end.x - line1.start.x;\r\n    const dy1 = line1.end.y - line1.start.y;\r\n    const dx2 = line2.end.x - line2.start.x;\r\n    const dy2 = line2.end.y - line2.start.y;\r\n    return ((dx1 * dy2) - (dy1 * dx2)) === 0;\r\n}",
+    "static": true,
+    "longname": "library/tiled-hull.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 11,
+    "kind": "function",
+    "name": "phaserTiledHull",
+    "memberof": "library/tiled-hull.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "library/tiled-hull.js~phaserTiledHull",
+    "access": null,
+    "export": true,
+    "importPath": "phaser-tiled-hull/library/tiled-hull.js",
+    "importStyle": "phaserTiledHull",
+    "description": "A function to take a tilemap layer and process its tiles into clusters. This returns an array of\npolygons - each polygon encloses a separate cluster of tiles in the tilemap layer. {@link PolygonEdge}",
+    "lineNumber": 25,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Array.<PolygonEdge[]>} An array where each element represents a polygon. The polygons\nare stored as an array of PolygonEdge instances."
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Phaser.TilemapLayer"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "tilemapLayer",
+        "description": "The tilemap layer to use for hull calculation."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": " {}",
+        "defaultRaw": {},
+        "name": "options",
+        "description": "Options for filtering the tiles and only allowing certain tiles to\nbe added to the final hulls. If no options specified, then all tiles in the layer will be\nprocessed and added to a hull. If multiple options are specified, then a tile only has to match\nONE of the options to be added to a hull."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number[]"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": " null",
+        "defaultRaw": null,
+        "name": "options.tileIndices",
+        "description": "An array of tile indices to use for determining\nwhich tiles should be clustered together. If a tile's index matches an index in the array, it\nwill be added to a hull."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": " null",
+        "defaultRaw": null,
+        "name": "options.tileProperty",
+        "description": "The name of a property on tiles (set in Tiled) to\nuse for determining which tiles should be clustered together. If the property is true (or truthy)\non a tile, it will be added to a hull."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "boolean"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": " false",
+        "defaultRaw": false,
+        "name": "options.checkCollide",
+        "description": "Whether or not a tile's collide property should\nbe used for determining which tiles should be clustered together. If true, then colliding tiles\nwill be added to a hull."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Array.<PolygonEdge[]>"
+      ],
+      "spread": false,
+      "description": "An array where each element represents a polygon. The polygons\nare stored as an array of PolygonEdge instances."
+    }
+  },
+  {
+    "__docId__": 12,
+    "kind": "function",
+    "name": "calculateClusters",
+    "memberof": "library/tiled-hull.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "library/tiled-hull.js~calculateClusters",
+    "access": null,
+    "export": false,
+    "importPath": "phaser-tiled-hull/library/tiled-hull.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 46,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "tilemapLayer",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "tileIndices",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "tileProperty",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "checkCollide",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 13,
+    "kind": "function",
+    "name": "calculateHullPoints",
+    "memberof": "library/tiled-hull.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "library/tiled-hull.js~calculateHullPoints",
+    "access": null,
+    "export": false,
+    "importPath": "phaser-tiled-hull/library/tiled-hull.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 103,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "clusters",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 14,
+    "kind": "function",
+    "name": "buildPolygons",
+    "memberof": "library/tiled-hull.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "library/tiled-hull.js~buildPolygons",
+    "access": null,
+    "export": false,
+    "importPath": "phaser-tiled-hull/library/tiled-hull.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 128,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "hulls",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 15,
+    "kind": "function",
+    "name": "checkIfCollinear",
+    "memberof": "library/tiled-hull.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "library/tiled-hull.js~checkIfCollinear",
+    "access": null,
+    "export": false,
+    "importPath": "phaser-tiled-hull/library/tiled-hull.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 186,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "line1",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "line2",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 17,
+    "kind": "external",
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Infinity",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 18,
+    "kind": "external",
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~NaN",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 19,
+    "kind": "external",
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~undefined",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 20,
+    "kind": "external",
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~null",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 21,
+    "kind": "external",
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Object",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 22,
+    "kind": "external",
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~object",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 23,
+    "kind": "external",
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Function",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 24,
+    "kind": "external",
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~function",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 25,
+    "kind": "external",
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Boolean",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 26,
+    "kind": "external",
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~boolean",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 27,
+    "kind": "external",
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Symbol",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 28,
+    "kind": "external",
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Error",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 29,
+    "kind": "external",
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~EvalError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 30,
+    "kind": "external",
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~InternalError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 31,
+    "kind": "external",
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RangeError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 32,
+    "kind": "external",
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ReferenceError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 33,
+    "kind": "external",
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~SyntaxError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 34,
+    "kind": "external",
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~TypeError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 35,
+    "kind": "external",
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~URIError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 36,
+    "kind": "external",
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Number",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 37,
+    "kind": "external",
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~number",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 38,
+    "kind": "external",
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Date",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 39,
+    "kind": "external",
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~String",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 40,
+    "kind": "external",
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~string",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 41,
+    "kind": "external",
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RegExp",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 42,
+    "kind": "external",
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 43,
+    "kind": "external",
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int8Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 44,
+    "kind": "external",
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 45,
+    "kind": "external",
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8ClampedArray",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 46,
+    "kind": "external",
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int16Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 47,
+    "kind": "external",
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint16Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 48,
+    "kind": "external",
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 49,
+    "kind": "external",
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 50,
+    "kind": "external",
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 51,
+    "kind": "external",
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float64Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 52,
+    "kind": "external",
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Map",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 53,
+    "kind": "external",
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Set",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 54,
+    "kind": "external",
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakMap",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 55,
+    "kind": "external",
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakSet",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 56,
+    "kind": "external",
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ArrayBuffer",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 57,
+    "kind": "external",
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~DataView",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 58,
+    "kind": "external",
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~JSON",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 59,
+    "kind": "external",
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Promise",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 60,
+    "kind": "external",
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Generator",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 61,
+    "kind": "external",
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~GeneratorFunction",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 62,
+    "kind": "external",
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Reflect",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 63,
+    "kind": "external",
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Proxy",
+    "access": null,
+    "description": "",
+    "lineNumber": 193,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 65,
+    "kind": "external",
+    "name": "CanvasRenderingContext2D",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~CanvasRenderingContext2D",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 66,
+    "kind": "external",
+    "name": "DocumentFragment",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~DocumentFragment",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 67,
+    "kind": "external",
+    "name": "Element",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Element",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~Element",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 68,
+    "kind": "external",
+    "name": "Event",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Event",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~Event",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 69,
+    "kind": "external",
+    "name": "Node",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Node",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~Node",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 70,
+    "kind": "external",
+    "name": "NodeList",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/NodeList",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~NodeList",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 71,
+    "kind": "external",
+    "name": "XMLHttpRequest",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~XMLHttpRequest",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 72,
+    "kind": "external",
+    "name": "AudioContext",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/AudioContext",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~AudioContext",
+    "access": null,
+    "description": "",
+    "lineNumber": 34,
+    "builtinExternal": true
+  }
+]

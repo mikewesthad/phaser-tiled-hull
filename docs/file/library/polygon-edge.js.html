@@ -45,7 +45,7 @@
  * length, midpoint, normal. This class isn&apos;t exposed directly by the module, but is used in the
  * return type of {@link phaserTiledHull}.
  */
-class PolygonEdge {
+export default class PolygonEdge {
     constructor(line, hullIndex) {
         /**
          * The line that makes up the edge
@@ -78,9 +78,7 @@ class PolygonEdge {
         return new Phaser.Point((line.end.y - line.start.y), -(line.end.x - line.start.x))
             .setMagnitude(1);
     }
-}
-
-export default PolygonEdge;</code></pre>
+}</code></pre>
 
 </div>
 

@@ -1,8 +1,3 @@
-/**
- * Phaser tiled hull module
- * @module phaser-tiled-hull
- */
-
 import hulljs from "hull.js"; // JS extension required
 import PolygonEdge from "./polygon-edge";
 
@@ -27,7 +22,7 @@ import PolygonEdge from "./polygon-edge";
  * @returns {Array.<PolygonEdge[]>} An array where each element represents a polygon. The polygons
  * are stored as an array of PolygonEdge instances.
  */
-function phaserTiledHull(tilemapLayer, {tileIndices = null, tileProperty = null, 
+export default function phaserTiledHull(tilemapLayer, {tileIndices = null, tileProperty = null, 
         checkCollide = false} = {}) {
     // Separate the tilemap layer into an array of clustered tiles
     const clusters = calculateClusters(tilemapLayer, tileIndices, tileProperty, checkCollide);
@@ -199,5 +194,3 @@ function checkIfCollinear(line1, line2) {
     const dy2 = line2.end.y - line2.start.y;
     return ((dx1 * dy2) - (dy1 * dx2)) === 0;
 }
-
-export default phaserTiledHull;

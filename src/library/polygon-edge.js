@@ -1,11 +1,9 @@
 /**
  * Small class for precomuting some useful information about an edge of a polygon - the line,
  * length, midpoint, normal. This class isn't exposed directly by the module, but is used in the
- * return type of {@link module:phaser-tiled-hull~phaserTiledHull}.
- *
- * @class PolygonEdge
+ * return type of {@link phaserTiledHull}.
  */
-class PolygonEdge {
+export default class PolygonEdge {
     constructor(line, hullIndex) {
         /**
          * The line that makes up the edge
@@ -39,5 +37,3 @@ class PolygonEdge {
             .setMagnitude(1);
     }
 }
-
-export default PolygonEdge;

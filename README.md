@@ -4,7 +4,7 @@ A module for use with [Phaser](http://phaser.io/) for reducing neighboring tiles
 
 This was built to find hulls for casting dynamic shadows in a 2D lighting engine, but the hull calculation might be useful for simplifying things like collision detection.
 
-<img src="./doc-images/demo.png" style="width: 100%">
+<img src="./doc-source/demo.png" style="width: 100%">
 
 (Note: if you are viewing this on GitHub or NPM, you might want to check out the HTML documentation [here](https://www.mikewesthad.com/phaser-tiled-hull/docs/).)
 

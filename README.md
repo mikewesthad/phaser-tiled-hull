@@ -17,7 +17,7 @@ Whether you include the library as a script tag or import it as a module, Phaser
 Download the dist/phaser-tiled-hull.min.js [here](https://raw.githubusercontent.com/mikewesthad/phaser-tiled-hull/master/dist/phaser-tiled-hull.min.js) and include it in your HTML:
 
 ```html
-<script src="dist/phaser-tiled-hull.min.js"><script>
+<script src="dist/phaser-tiled-hull.min.js"></script>
 ```
 
 Inside of your own script, you can now use the global `phaserTiledHull`:

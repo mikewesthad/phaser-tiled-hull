@@ -82,17 +82,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (immutable) */ __webpack_exports__["default"] = phaserTiledHull;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_hull_js__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_hull_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_hull_js__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polygon_edge__ = __webpack_require__(2);
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-/**
- * Phaser tiled hull module
- * @module phaser-tiled-hull
- */
 
  // JS extension required
 
@@ -444,8 +440,6 @@ function checkIfCollinear(line1, line2) {
     return dx1 * dy2 - dy1 * dx2 === 0;
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (phaserTiledHull);
-
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -466,9 +460,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 /**
  * Small class for precomuting some useful information about an edge of a polygon - the line,
  * length, midpoint, normal. This class isn't exposed directly by the module, but is used in the
- * return type of {@link module:phaser-tiled-hull~phaserTiledHull}.
- *
- * @class PolygonEdge
+ * return type of {@link phaserTiledHull}.
  */
 var PolygonEdge = function () {
   function PolygonEdge(line, hullIndex) {

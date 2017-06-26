@@ -96,8 +96,7 @@ const hulls = phaserTiledHull(wallLayer, {
 
 ## To Do
 
-- Publish to npm
-- Add Phaser as an external dependency so that it doesn't have to be on the global. Relevant mostly for when Phaser v3 is released.
+- When a version of Phaser is released that doesn't require a global variable (v3?), then modify the library to include Phaser as an external dependency (vs assuming it is on the global object).
 - hull.js can't handle 1x tile concave gaps. Submit PR to hull.js to fix that. For example:
 
 ```

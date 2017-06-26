@@ -1,7 +1,7 @@
 {
   "name": "phaser-tiled-hull",
   "version": "1.0.1",
-  "description": "A plugin for Phaser for reducing neighboring tiles into a single shape (a hull)",
+  "description": "A module for Phaser for reducing neighboring tiles into a single shape (a hull)",
   "main": "dist/phaser-tiled-hull.min.js",
   "scripts": {
     "build:library": "webpack --config config/webpack.config.library.js",
@@ -13,8 +13,8 @@
     "serve": "browser-sync start --config \"config/browser-sync.config.js\"",
     "dev": "concurrently \"npm run watch:all\" \"npm run serve\"",
     "clean:builds": "rimraf dist public",
-    "clean:docs": "rimraf out",
-    "clean:all": "rimraf dist public out",
+    "clean:docs": "rimraf docs",
+    "clean:all": "concurrently \"npm run clean:builds\" \"npm run clean:docs\"",
     "doc": "esdoc -c config/esdoc.json",
     "postdoc": "cp -r doc-source/ docs/",
     "deploy:doc": "gh-pages --branch gh-pages --dist docs --dest docs",

@@ -1,6 +1,6 @@
 {
   "name": "phaser-tiled-hull",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A module for Phaser for reducing neighboring tiles into a single shape (a hull)",
   "main": "dist/phaser-tiled-hull.min.js",
   "scripts": {
